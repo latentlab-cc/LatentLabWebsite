@@ -3,21 +3,21 @@ export function About() {
     <section id="about" className="section">
       <header className="section-head">
         <span className="idx">// 01 — About</span>
-        <h2>A studio for tools that <em>think</em>.</h2>
+        <h2>Software for <em>serious play</em>.</h2>
       </header>
       <div className="about">
         <div className="about-spacer" aria-hidden="true" />
         <div className="about-body">
           <p>
-            Latent Lab is a small, independent software studio.
-            We ship focused tools — practical instruments, built
-            for people who want their software to feel like it
-            was made by someone who cared.
+            Latent Lab is a small, independent studio building
+            software for players. Whether you&apos;re tuning a deck
+            before a tournament or chasing the lag spike that just
+            killed your match, our tools are built to get out of
+            the way and let you focus on the game.
           </p>
           <p>
-            Every project below is a separate surface, deployed at
-            its own subdomain. Pick a thing. Use it. Tell us when
-            it&apos;s wrong.
+            Each project lives at its own subdomain. Try the one
+            that fits what you&apos;re playing.
           </p>
         </div>
         <aside className="about-meta" aria-label="Studio metadata">
@@ -31,7 +31,7 @@ export function About() {
           </div>
           <div className="meta-row">
             <span className="k">Focus</span>
-            <span className="v">Tools, games, networks</span>
+            <span className="v">Tools for players</span>
           </div>
           <div className="meta-row">
             <span className="k">Status</span>

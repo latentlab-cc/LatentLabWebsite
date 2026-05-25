@@ -13,9 +13,9 @@ export function Hero() {
           <span className="row"><span><em>Lab</em>.</span></span>
         </h1>
         <p className="hero-sub">
-          We build instruments for the work that comes next —
-          deck-builders for the games we love, observability
-          for the networks we run, and a few things in between.
+          We build software for players who want to play their best.
+          Deck builders for the games we love, network monitoring
+          that keeps your connection out of the way, and more on the way.
         </p>
       </div>
       <div className="hero-foot">

@@ -11,38 +11,37 @@ type Project = {
   statusLabel: string;
 };
 
-// TODO(subdomains): replace example.com URLs with the real subdomains once DNS is wired up.
 const projects: Project[] = [
   {
     id: 'LL-001',
     name: 'Riftbound',
-    emphasized: 'Engine',
+    emphasized: 'Deck Builder',
     tag: 'Deck Editor',
     description:
-      'A precision deck editor for Riftbound. Built for the people who actually shuffle the cards — fast search, format-aware validation, and exports that don\'t fight your tournament software.',
-    href: 'https://riftbound.example.com',
+      'A deck editor for Riftbound, built for players who actually shuffle the cards. Fast search, format-aware validation, and exports that work with your tournament software.',
+    href: 'https://the-rift.latentlab.cc/',
     status: 'live',
     statusLabel: 'Live',
   },
   {
     id: 'LL-002',
-    name: 'MTG Modern',
-    emphasized: 'Engine',
+    name: 'MtG',
+    emphasized: 'Deck Builder',
     tag: 'Deck Builder',
     description:
-      'A deck builder for Magic: The Gathering Modern. Opinionated, keyboard-driven, and tuned for the metagame people actually queue against.',
-    href: 'https://mtgmodern.example.com',
+      'A deck builder for Magic: The Gathering\'s Modern Format. Tuned for tournament-focused players.',
+    href: 'https://modernmtg.latentlab.cc/',
     status: 'beta',
     statusLabel: 'Beta',
   },
   {
     id: 'LL-003',
-    name: 'lag',
-    emphasized: 'sleuth',
+    name: 'Lag',
+    emphasized: 'Sleuth',
     tag: 'Network Monitor',
     description:
-      'Lightweight network monitoring with a sense of humor about itself. Find the link that\'s lying about being up before your users do.',
-    href: 'https://lagsleuth.example.com',
+      'Lightweight network monitoring built for gamers. Pinpoint the lag spikes that wreck matches - see where your connection is dropping packets before it costs you another game.',
+    href: 'https://lagsleuth.latentlab.cc/',
     status: 'alpha',
     statusLabel: 'Alpha',
   },
@@ -53,7 +52,7 @@ export function Projects() {
     <section id="projects" className="section">
       <header className="section-head">
         <span className="idx">// 02 — Projects</span>
-        <h2>Three surfaces. <em>One studio.</em></h2>
+        <h2>Built for <em>players</em>.</h2>
       </header>
       <div className="projects" role="list">
         {projects.map((p) => (

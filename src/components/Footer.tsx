@@ -8,7 +8,7 @@ export function Footer() {
           <div style={{ marginTop: 6 }}>© {year} Latent Lab LLC&nbsp;·&nbsp;All rights reserved</div>
         </div>
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-          <a href="mailto:contact@latentlab.dev">contact@latentlab.dev</a>
+          <a href="mailto:contact@latentlab.cc">contact@latentlab.cc</a>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
         </div>
