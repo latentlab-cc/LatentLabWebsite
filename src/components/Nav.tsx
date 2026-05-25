@@ -8,7 +8,7 @@ export function Nav() {
       <div className="nav-links">
         <a href="#about"><span className="idx">01</span>About</a>
         <a href="#projects"><span className="idx">02</span>Projects</a>
-        <a href="mailto:contact@latentlab.dev"><span className="idx">03</span>Contact</a>
+        <a href="#/contact"><span className="idx">03</span>Contact</a>
       </div>
     </nav>
   );

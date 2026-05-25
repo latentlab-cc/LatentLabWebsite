@@ -18,14 +18,6 @@ export function Hero() {
           that keeps your connection out of the way, and more on the way.
         </p>
       </div>
-      <div className="hero-foot">
-        <div className="coord">N 41°&nbsp;·&nbsp;W 74°&nbsp;·&nbsp;Index&nbsp;01&nbsp;/&nbsp;03</div>
-        <a className="scroll" href="#about" aria-label="Scroll to about">
-          <span>Scroll</span>
-          <span className="stroke" aria-hidden="true" />
-          <span>↓</span>
-        </a>
-      </div>
     </section>
   );
 }

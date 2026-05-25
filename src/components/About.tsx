@@ -15,10 +15,6 @@ export function About() {
             killed your match, our tools are built to get out of
             the way and let you focus on the game.
           </p>
-          <p>
-            Each project lives at its own subdomain. Try the one
-            that fits what you&apos;re playing.
-          </p>
         </div>
         <aside className="about-meta" aria-label="Studio metadata">
           <div className="meta-row">
