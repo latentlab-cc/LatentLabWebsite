@@ -1,6 +1,6 @@
 # Requirements
 
-> Draft v0.2. Anything marked **[?]** is still open. See [Open questions](#open-questions)
+> Draft v0.3. Anything marked **[?]** is still open. See [Open questions](#open-questions)
 > at the bottom. Answered questions are recorded in the [PLAN.md decision log](PLAN.md#decision-log).
 
 ## 1. Problem
@@ -41,6 +41,10 @@ On a phone, it falls apart:
 - Recurring meeting management after the time is picked.
 - Paid tiers, teams, or org admin.
 - Native iOS/Android apps. It's a PWA-capable web app; native apps can come later.
+- Accounts or sign-in of any kind. Google sign-in is planned for later (P2), not v1.
+- An "if needed" availability state (see §5).
+- Time windows that cross midnight. Late-night sessions are usually informal and not
+  scheduled ahead, so v1 days end at midnight at the latest.
 - Work and office scheduling features (rooms, Outlook integration, etc.).
 
 ## 4. Audience, users and roles
@@ -50,7 +54,8 @@ tournament practice, board game nights. This shapes the product:
 
 - People open the link from **Discord**, iMessage, or WhatsApp, usually on a phone,
   often inside an in-app browser.
-- Events run **in the evening and late at night**, often past midnight.
+- Events run **in the evening and late at night**. Scheduled sessions end by midnight
+  (later sessions tend to happen informally).
 - Groups span **timezones** (online friends).
 - The tone is **casual and playful**, not corporate. It fits Latent Lab's "built for
   players" positioning.
@@ -71,8 +76,8 @@ tournament practice, board game nights. This shapes the product:
   ("any Mon/Wed", no dates). when2meet supports both.
 - **Slot:** the smallest selectable unit. **15 minutes** in v1.
 - **Response:** one participant's name plus the slots they've marked.
-- **Availability state per slot:** `available` or unset (= unavailable). A third
-  `if needed` state is still open **[?]**.
+- **Availability state per slot:** `available` or unset (= unavailable). Binary, like
+  when2meet. A third "if needed" state is deferred until testing shows people want it.
 - **Viable window:** a continuous stretch of time at least as long as the minimum duration.
   A participant **counts toward a window only if they're available for all of it**.
 
@@ -85,16 +90,15 @@ Priority: **P0** = MVP, **P1** = soon after launch, **P2** = later / nice to hav
 | ID | Req | Pri |
 | --- | --- | --- |
 | C-1 | Create an event with a title and candidate days, picked on a touch-friendly calendar (tap or drag to select multiple dates; quick picks like "this weekend" or "next 7 days") | P0 |
-| C-2 | Set a daily time window (e.g. 6pm–1am) with a touch-friendly picker, not a dropdown of 96 options | P0 |
+| C-2 | Set a daily time window (e.g. 6pm–midnight) with a touch-friendly picker, not a dropdown of 96 options. The latest end time is midnight. | P0 |
 | C-3 | Slot size is 15 minutes, fixed in v1. Other sizes (30 or 60 minutes) are P2. | P0 |
 | C-4 | Event timezone defaults to the organizer's device timezone | P0 |
 | C-5 | **Required minimum duration.** Quick picks (1h, 2h, 3h, 4h) plus a custom value in 15-minute steps. The event can't be created without it. | P0 |
 | C-6 | Validation: the minimum duration fits inside the daily time window (you can't ask for 4h in a 3h window) | P0 |
-| C-7 | Time windows that cross midnight (e.g. 8pm–2am, shown as one evening, not split across two days) | P1 **[?]** |
-| C-8 | "Days of the week" mode (no specific dates) | P1 |
-| C-9 | Optional description / location / game | P1 |
-| C-10 | Different time windows per day | P2 |
-| C-11 | Optional expected participant list, so we can show who hasn't responded | P2 |
+| C-7 | "Days of the week" mode (no specific dates) | P1 |
+| C-8 | Optional description / location / game | P1 |
+| C-9 | Different time windows per day | P2 |
+| C-10 | Optional expected participant list, so we can show who hasn't responded | P2 |
 
 ### 6.2 Share
 
@@ -120,11 +124,11 @@ Priority: **P0** = MVP, **P1** = soon after launch, **P2** = later / nice to hav
 | R-9 | **Short-block hint.** A marked block shorter than the minimum duration is visibly flagged (e.g. "1h, too short to count"). It's still saved, never blocked. | P0 |
 | R-10 | Show times in the respondent's local timezone, with a clear label when it differs from the event's | P0 |
 | R-11 | Come back and edit your response on the same device without logging in (local token). Optional name + PIN to edit from another device. | P0 (device) / P1 (PIN) |
+| R-16 | Optional Google sign-in to keep your events and responses across devices | P2 |
 | R-12 | Autosave as you go, with a visible "saved" state, so no "submit" step gets forgotten | P0 |
 | R-13 | Bulk shortcuts: "all evening", "clear day", "copy this day to…" | P1 |
 | R-14 | See everyone else's availability as an overlay while you're picking | P1 |
-| R-15 | "If needed" state, separate from "available" | **[?]** |
-| R-16 | Prefill busy times from a calendar (Google / Apple / ICS), read-only and never stored server-side | P2 |
+| R-15 | Prefill busy times from a calendar (Google / Apple / ICS), read-only and never stored server-side | P2 |
 
 ### 6.4 Results
 
@@ -217,9 +221,9 @@ The minimum duration needs to be visible wherever it affects a decision:
 | --- | --- |
 | Performance | Interactive in under 2s on a mid-range phone on 4G. Painting stays at 60fps on a 7-day × 15-min grid. Results (viable windows) computed instantly on the device for up to ~30 respondents. |
 | Compatibility | iOS Safari, Android Chrome, **in-app browsers** (Discord, iMessage, Instagram, WhatsApp), and desktop evergreen browsers |
-| Hosting | Served under `latentlab.cc/make-time` for now. The base path is configurable so it can move to its own domain (see [README](../README.md)). |
-| Privacy | No accounts and no tracking beyond basic anonymous analytics. Events can be deleted. Calendar data (R-16) stays on the device. |
-| Data retention | Events expire some time after their last candidate date **[? 30–90 days]** |
+| Hosting | Frontend: a static build served at `latentlab.cc/make-time` (base path is configurable). Backend: a Kubernetes service on the home lab cluster behind the shared Kong gateway. See the [README](../README.md). |
+| Privacy | No accounts and no tracking beyond basic anonymous analytics. Events can be deleted. Calendar data (R-15) stays on the device. |
+| Data retention | **14-day TTL.** Events and their responses are deleted 14 days after the last candidate date (days-of-week events: 14 days after the last change). A scheduled cleanup job does the deletion, and the event page says when the event expires. |
 | Security | Event IDs and edit tokens are unguessable. Rate limits on create and respond. Names are display-only and HTML-escaped. |
 | Reliability | Autosave holds up on flaky mobile connections: queue the change and retry, and don't lose the user's selection |
 | Offline | P2: the respond page works offline after first load and syncs when reconnected |
@@ -235,17 +239,10 @@ The minimum duration needs to be visible wherever it affects a decision:
 
 ## Open questions
 
-1. **"If needed" state (R-15):** besides "available", should respondents be able to mark
-   a slot as "I *can* make this, but I'd rather not"? Example: you could play from 6pm,
-   but 6–7pm means skipping dinner, so you mark it "if needed". Results would then prefer
-   windows where everyone is fully available, and fall back to "if needed" slots only when
-   there's no other option. Timeful and LettuceMeet have this. It's more expressive, but it
-   adds a second paint state to the hardest UI in the app. **Recommendation:** leave it out
-   of v1 and revisit after testing.
-2. **Crossing midnight (C-7):** how often do your sessions run past midnight? If often,
-   this should move up to P0, because it changes the data model and the day view.
-3. **Calendar import (R-16):** OK to keep it at P2?
-4. **Accounts:** OK to never require one, even for organizers (organizer gets a private
-   admin link instead)?
-5. **Data retention window:** how long do events live after their last date?
-6. **Backend:** Cloudflare Workers + D1 (see [PLAN.md](PLAN.md), Phase 3)?
+Product questions are answered for now (see the [decision log](PLAN.md#decision-log)).
+The remaining questions are about infrastructure:
+
+1. **Repo:** OK to keep Make Time in the website repo? The shared Kong, CI runner, and
+   registry work from any latentlab-cc repo (ModernMtg already does this), so moving
+   isn't required. See [PLAN.md](PLAN.md), Phase 3.
+2. **API hostname:** proposed `maketime-api.latentlab.cc` (see the [README](../README.md)).

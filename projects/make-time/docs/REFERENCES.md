@@ -53,6 +53,15 @@ Each entry notes **why it's relevant**.
 | Vibration API | https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API | Haptics on Android. **iOS Safari doesn't support it.** |
 | Temporal / Intl | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat | Timezone-correct display |
 | iCalendar (RFC 5545) | https://datatracker.ietf.org/doc/html/rfc5545 | .ics export (F-2) |
-| Cloudflare Workers / D1 / Durable Objects | https://developers.cloudflare.com/ | Candidate backend; the website already deploys to Cloudflare Pages |
+| Kong grpc-gateway plugin | https://docs.konghq.com/hub/kong-inc/grpc-gateway/ | How the shared Kong transcodes HTTP/JSON to gRPC |
+| Kong CORS plugin | https://docs.konghq.com/hub/kong-inc/cors/ | Cross-origin calls from `latentlab.cc` to the API hostname |
+| CloudNativePG | https://cloudnative-pg.io/documentation/ | Postgres operator already on the cluster |
 | Cloudflare Pages `_redirects` | https://developers.cloudflare.com/pages/configuration/redirects/ | Sending `/make-time/*` deep links to Make Time's `index.html` |
 | `git subtree` | https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging | Migration to a separate repo (see README) |
+
+## Internal references (existing latentlab-cc infrastructure)
+
+| Repo / file | Why |
+| --- | --- |
+| [Riftbound-Engine](https://github.com/latentlab-cc/Riftbound-Engine) `k8s/README.md`, `k8s/templates/kong-values.yaml` | Owns the shared Kong Helm release, registry, and org runner. Make Time's proto mount gets added here. |
+| [ModernMtgEngine](https://github.com/latentlab-cc/ModernMtgEngine) `k8s/README.md`, `k8s/templates/kong.yaml`, `project.yaml`, `Makefile` (`kong-deploy`) | The template to copy: a secondary project on the shared Kong with a host-scoped Ingress and its own namespace, DB, and tunnel |
