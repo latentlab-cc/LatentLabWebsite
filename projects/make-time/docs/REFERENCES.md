@@ -1,6 +1,6 @@
 # References
 
-Products, patterns, and technical resources we're drawing from. Add to this as we go.
+Products, patterns, and technical resources we're drawing from for Make Time. Add to this as we go.
 Each entry notes **why it's relevant**.
 
 ## Direct competitors / prior art
@@ -34,7 +34,7 @@ Each entry notes **why it's relevant**.
 | Long-press then drag | iOS text selection, Photos multi-select drag | Gesture option B in §7.1 |
 | Swipe-to-multi-select | iOS Photos / Mail (two-finger or drag across checkboxes) | Painting without a mode |
 | Bottom sheets | Apple Maps, Google Maps | Slot details ("who's free?") on the results view |
-| Haptic tick on scrub | iOS pickers, Apple Watch crown | Painting feedback (§7.3) |
+| Haptic tick on scrub | iOS pickers, Apple Watch crown | Painting feedback (§7.4) |
 
 ## Design and accessibility
 
@@ -54,4 +54,5 @@ Each entry notes **why it's relevant**.
 | Temporal / Intl | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat | Timezone-correct display |
 | iCalendar (RFC 5545) | https://datatracker.ietf.org/doc/html/rfc5545 | .ics export (F-2) |
 | Cloudflare Workers / D1 / Durable Objects | https://developers.cloudflare.com/ | Candidate backend; the website already deploys to Cloudflare Pages |
+| Cloudflare Pages `_redirects` | https://developers.cloudflare.com/pages/configuration/redirects/ | Sending `/make-time/*` deep links to Make Time's `index.html` |
 | `git subtree` | https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging | Migration to a separate repo (see README) |
